@@ -1,5 +1,6 @@
 import { NavLink } from '@/components/NavLink';
 import { Home, Target, Timer, Brain, TrendingUp } from 'lucide-react';
+import studyTrackerLogo from '@/assets/study-tracker-logo.png';
 
 export const Navigation = () => {
   const navItems = [
@@ -13,11 +14,14 @@ export const Navigation = () => {
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 md:top-0 md:left-0 md:bottom-auto md:right-auto md:w-64 bg-card/80 backdrop-blur-lg border-t md:border-r md:border-t-0 border-border/50">
       <div className="flex md:flex-col items-center md:items-start p-4 md:p-6">
-        <div className="hidden md:block mb-8">
-          <h1 className="text-2xl font-bold gradient-primary bg-clip-text text-transparent">
-            Study Tracker
-          </h1>
-          <p className="text-xs text-muted-foreground mt-1">Achieve Your Goals</p>
+        <div className="hidden md:flex items-center gap-3 mb-8">
+          <img src={studyTrackerLogo} alt="Study Tracker Logo" className="w-12 h-12" />
+          <div>
+            <h1 className="text-2xl font-bold gradient-primary bg-clip-text text-transparent">
+              Study Tracker
+            </h1>
+            <p className="text-xs text-muted-foreground mt-1">Achieve Your Goals</p>
+          </div>
         </div>
         
         <div className="flex md:flex-col gap-2 md:gap-1 w-full justify-around md:justify-start">
