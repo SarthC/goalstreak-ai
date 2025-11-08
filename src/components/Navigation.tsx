@@ -17,8 +17,8 @@ export const Navigation = () => {
         <div className="hidden md:flex items-center gap-3 mb-8">
           <img src={studyTrackerLogo} alt="Study Tracker Logo" className="w-12 h-12" />
           <div>
-            <h1 className="text-2xl font-bold gradient-primary bg-clip-text text-transparent">
-              Study Tracker
+            <h1 className="text-2xl font-bold text-foreground">
+              StudyTracker
             </h1>
             <p className="text-xs text-muted-foreground mt-1">Achieve Your Goals</p>
           </div>
