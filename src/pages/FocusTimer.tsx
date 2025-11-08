@@ -10,7 +10,7 @@ const FocusTimer = () => {
   const [timeLeft, setTimeLeft] = useState(25 * 60);
   const [isRunning, setIsRunning] = useState(false);
   const [isBreak, setIsBreak] = useState(false);
-  const [selectedGoalId, setSelectedGoalId] = useState<string>('');
+  const [selectedGoalId, setSelectedGoalId] = useState<string>('none');
   const [sessionStartTime, setSessionStartTime] = useState<Date | null>(null);
   
   const goals = useStudyStore((state) => state.goals);
@@ -42,7 +42,7 @@ const FocusTimer = () => {
     if (!isBreak && sessionStartTime) {
       // Focus session completed
       addFocusSession({
-        goalId: selectedGoalId || undefined,
+        goalId: selectedGoalId !== 'none' ? selectedGoalId : undefined,
         duration: FOCUS_TIME,
         startTime: sessionStartTime,
         endTime: new Date(),
@@ -154,7 +154,7 @@ const FocusTimer = () => {
                     <SelectValue placeholder="Select a goal" />
                   </SelectTrigger>
                   <SelectContent className="bg-popover border-border">
-                    <SelectItem value="">No goal</SelectItem>
+                    <SelectItem value="none">No goal</SelectItem>
                     {goals.filter(g => g.currentValue < g.targetValue).map((goal) => (
                       <SelectItem key={goal.id} value={goal.id}>
                         {goal.title}
