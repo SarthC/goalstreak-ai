@@ -15,6 +15,7 @@ const FocusTimer = () => {
   
   const goals = useStudyStore((state) => state.goals);
   const addFocusSession = useStudyStore((state) => state.addFocusSession);
+  const user = useStudyStore((state) => state.user);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const FOCUS_TIME = 25 * 60;
@@ -38,8 +39,8 @@ const FocusTimer = () => {
 
   const handleTimerComplete = () => {
     setIsRunning(false);
-    
-    if (!isBreak && sessionStartTime) {
+
+    if (!isBreak && sessionStartTime && user) {
       // Focus session completed
       addFocusSession({
         goalId: selectedGoalId !== 'none' ? selectedGoalId : undefined,

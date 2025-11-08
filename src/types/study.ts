@@ -12,6 +12,7 @@ export interface Goal {
   streak: number;
   lastUpdated?: Date;
   freezesAvailable: number;
+  userId: string;
 }
 
 export interface ProgressEntry {
@@ -20,6 +21,7 @@ export interface ProgressEntry {
   date: Date;
   value: number;
   notes?: string;
+  userId: string;
 }
 
 export interface FocusSession {
@@ -29,6 +31,7 @@ export interface FocusSession {
   startTime: Date;
   endTime?: Date;
   completed: boolean;
+  userId: string;
 }
 
 export interface Achievement {
@@ -38,4 +41,5 @@ export interface Achievement {
   icon: string;
   earnedAt?: Date;
   type: 'streak' | 'completion' | 'focus' | 'special';
+  userId: string;
 }

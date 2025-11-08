@@ -28,35 +28,47 @@ export const AddGoalDialog = () => {
 
   const addGoal = useStudyStore((state) => state.addGoal);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.title || !formData.subject || !formData.targetValue || !formData.deadline) {
       toast.error('Please fill in all required fields');
       return;
     }
 
-    addGoal({
-      title: formData.title,
-      subject: formData.subject,
-      targetValue: parseFloat(formData.targetValue),
-      currentValue: 0,
-      unit: formData.unit,
-      deadline: new Date(formData.deadline),
-      color: `hsl(${Math.random() * 360}, 70%, 60%)`,
-      dailyTarget: formData.dailyTarget ? parseFloat(formData.dailyTarget) : undefined,
-    });
+    console.log('Submitting goal form with data:', formData);
 
-    toast.success('Goal created successfully!');
-    setOpen(false);
-    setFormData({
-      title: '',
-      subject: '',
-      targetValue: '',
-      unit: 'Pages',
-      deadline: '',
-      dailyTarget: '',
-    });
+    try {
+      const goalData = {
+        title: formData.title,
+        subject: formData.subject,
+        targetValue: parseFloat(formData.targetValue),
+        currentValue: 0,
+        unit: formData.unit,
+        deadline: new Date(formData.deadline),
+        color: `hsl(${Math.random() * 360}, 70%, 60%)`,
+        dailyTarget: formData.dailyTarget ? parseFloat(formData.dailyTarget) : undefined,
+      };
+
+      console.log('About to call addGoal with:', goalData);
+      console.log('addGoal function:', addGoal);
+      await addGoal(goalData);
+      console.log('addGoal call completed');
+
+      toast.success('Goal created successfully!');
+      setOpen(false);
+      setFormData({
+        title: '',
+        subject: '',
+        targetValue: '',
+        unit: 'Pages',
+        deadline: '',
+        dailyTarget: '',
+      });
+    } catch (error) {
+      console.error('Failed to create goal:', error);
+      toast.error('Failed to create goal. Please try again.');
+    }
   };
 
   return (
